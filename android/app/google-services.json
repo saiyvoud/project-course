@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "44958540570",
+    "project_id": "stellar-zoo-339514",
+    "storage_bucket": "stellar-zoo-339514.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:44958540570:android:0b51d6ada352f62e8d42a3",
+        "android_client_info": {
+          "package_name": "com.e_commerces.shoppee"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "44958540570-j0jhp4srhgajlc65jncu10umveh8k1ne.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCHYDFcnZB-shAbWEeuRTft5ZAHQLxVJfY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "44958540570-j0jhp4srhgajlc65jncu10umveh8k1ne.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
