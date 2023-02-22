@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.e_commerces.shoppee">
+    package="com.e_comerces.shoppee">
    <application
         android:label="e_commerces"
         android:name="${applicationName}"

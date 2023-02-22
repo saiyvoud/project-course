@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "44958540570",
-    "project_id": "stellar-zoo-339514",
-    "storage_bucket": "stellar-zoo-339514.appspot.com"
+    "project_number": "536437775418",
+    "project_id": "ecomerces-a4c55",
+    "storage_bucket": "ecomerces-a4c55.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:44958540570:android:0b51d6ada352f62e8d42a3",
+        "mobilesdk_app_id": "1:536437775418:android:0dbfc9b9e01483e7166903",
         "android_client_info": {
-          "package_name": "com.e_commerces.shoppee"
+          "package_name": "com.e_comerces.shoppee"
         }
       },
       "oauth_client": [
         {
-          "client_id": "44958540570-j0jhp4srhgajlc65jncu10umveh8k1ne.apps.googleusercontent.com",
+          "client_id": "536437775418-7cqdav35jge2a2ao28ksqlf6r34g74u8.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCHYDFcnZB-shAbWEeuRTft5ZAHQLxVJfY"
+          "current_key": "AIzaSyAi83bQpzHkm9pA-M6BGqH__JwTB8zloO8"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "44958540570-j0jhp4srhgajlc65jncu10umveh8k1ne.apps.googleusercontent.com",
+              "client_id": "536437775418-7cqdav35jge2a2ao28ksqlf6r34g74u8.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
