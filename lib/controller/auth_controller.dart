@@ -1,3 +1,4 @@
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -5,7 +6,32 @@ import 'package:get/get.dart';
 
 class AuthController extends GetxController {
   final auth = FirebaseAuth.instance;
+  User? user = FirebaseAuth.instance.currentUser;
   final firestore = FirebaseFirestore.instance;
+
+  Future<void> validator() async {
+    try {
+      await Future.delayed(Duration(seconds: 3));
+      if (user == null) {
+        Get.offAllNamed("/dashboard");
+      } else {
+        Get.offAllNamed("/home");
+      }
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<void> logout() async {
+    try {
+      await auth.signOut().then((value) {
+        Get.offAllNamed("/dashboard");
+      });
+    } catch (e) {
+      rethrow;
+    }
+  }
+
   Future<void> register({
     required String firstName,
     required String lastName,
@@ -28,6 +54,7 @@ class AuthController extends GetxController {
             backgroundColor: Colors.green,
             colorText: Colors.white,
           );
+          Get.offAllNamed("/home");
         });
       });
     } catch (e) {
@@ -54,6 +81,7 @@ class AuthController extends GetxController {
           backgroundColor: Colors.green,
           colorText: Colors.white,
         );
+        Get.offAllNamed("/home");
       });
     } catch (e) {
       Get.snackbar(

@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:e_commerces/components/color.dart';
 import 'package:e_commerces/controller/product_controller.dart';
+import 'package:e_commerces/page/home/detail.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
@@ -36,24 +37,26 @@ class _ProductComponentState extends State<ProductComponent> {
           itemCount: productController.productList.length,
           itemBuilder: (context, index) {
             var data = productController.productList;
-            return Card(
-              child: Column(
-                children: [
-                  CachedNetworkImage(
-                    imageUrl: '${data[index].image}',
-                    fit: BoxFit.cover,
-                    height: 150,
-                  ),
-                  // Image.network(
-                  //   '${data[index].image}',
-                  //   fit: BoxFit.fill,
-                  //   height: 150,
-                  // ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Text('${data[index].name}')
-                ],
+            return InkWell(
+              onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          DetailHomePage(productModel: data[index]))),
+              child: Card(
+                child: Column(
+                  children: [
+                    CachedNetworkImage(
+                      imageUrl: '${data[index].image}',
+                      fit: BoxFit.cover,
+                      height: 150,
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Text('${data[index].name}')
+                  ],
+                ),
               ),
             );
           },

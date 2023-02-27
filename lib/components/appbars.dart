@@ -1,8 +1,10 @@
+import 'package:e_commerces/controller/auth_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'color.dart';
 
-AppBar appbar(BuildContext context) {
+AppBar appbar(BuildContext context, AuthController controller) {
   return AppBar(
     backgroundColor: primaryColor,
     leading: Padding(
@@ -27,36 +29,43 @@ AppBar appbar(BuildContext context) {
       ),
     ),
     actions: [
-      Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Stack(
-          children: [
-            Positioned(
-              top: 0,
-              right: 0,
-              child: Container(
-                height: 20,
-                width: 20,
-                decoration: BoxDecoration(
-                  color: primaryColorRed,
-                  borderRadius: BorderRadius.circular(20),
-                  // border: Border.all(color: primaryColorWhite),
+      GetBuilder(builder: <CartController>(cartController) {
+        if (cartController.loadingCart.value) {
+          return CircularProgressIndicator();
+        } else {
+          return Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Stack(
+              children: [
+                Positioned(
+                  top: 0,
+                  right: 0,
+                  child: Container(
+                    height: 20,
+                    width: 20,
+                    decoration: BoxDecoration(
+                      color: primaryColorRed,
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: Center(
+                        child: Text(
+                      "${cartController.cartModelList.length}",
+                    )),
+                  ),
                 ),
-                child: Center(
-                    child: Text(
-                  "0",
-                )),
-              ),
+                IconButton(
+                  onPressed: () {},
+                  icon: Icon(Icons.shopping_cart),
+                ),
+              ],
             ),
-            IconButton(
-              onPressed: () {},
-              icon: Icon(Icons.shopping_cart),
-            ),
-          ],
-        ),
-      ),
+          );
+        }
+      }),
       IconButton(
-        onPressed: () {},
+        onPressed: () {
+          controller.logout();
+        },
         icon: Icon(Icons.exit_to_app),
       )
     ],

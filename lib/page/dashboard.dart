@@ -1,8 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
+
 import 'package:get/get.dart';
 
 class DashBoardPage extends StatefulWidget {
@@ -19,7 +18,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
       backgroundColor: Colors.indigo.shade800,
       body: Column(
         children: [
-          SizedBox(height: 50),
+          SizedBox(height: 100),
           Center(
             child: Text(
               "Let's Get Start",

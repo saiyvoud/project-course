@@ -1,7 +1,10 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:e_commerces/components/color.dart';
 import 'package:e_commerces/components/data.dart';
+import 'package:e_commerces/controller/banner_controller.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class BarnnerComponents extends StatefulWidget {
   const BarnnerComponents({super.key});
@@ -11,17 +14,21 @@ class BarnnerComponents extends StatefulWidget {
 }
 
 class _BarnnerComponentsState extends State<BarnnerComponents> {
+  final bannerController = Get.put(BannerController());
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        _barnner(),
-        // SizedBox(
-        //   height: 10,
-        // ),
-        _indicator(),
-      ],
-    );
+    return GetBuilder<BannerController>(builder: (context) {
+      if (bannerController.loadingBanner.value) {
+        return CircularProgressIndicator();
+      } else {
+        return Stack(
+          children: [
+            _barnner(),
+            _indicator(),
+          ],
+        );
+      }
+    });
   }
 
   int _current = 0;
@@ -36,17 +43,16 @@ class _BarnnerComponentsState extends State<BarnnerComponents> {
             _current = index;
           });
         }),
-        // aspectRatio: 1,
         viewportFraction: 1,
       ),
-      items: barnner.map((e) {
+      items: bannerController.bannerList.map((e) {
         return Container(
           width: double.infinity,
           padding: EdgeInsets.all(10),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(15),
-            child: Image.asset(
-              e,
+            child: Image.network(
+              e.image!,
               fit: BoxFit.cover,
             ),
           ),
@@ -62,12 +68,11 @@ class _BarnnerComponentsState extends State<BarnnerComponents> {
       left: 50,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: barnner.map((e) {
-          var index = barnner.indexOf(e);
+        children: bannerController.bannerList.map((e) {
+          var index = bannerController.bannerList.indexOf(e);
           return Container(
             margin: EdgeInsets.symmetric(horizontal: 3),
             decoration: BoxDecoration(
-              // borderRadius: BorderRadius.circular(10),
               color: primaryColorWhite,
               shape: _current == index ? BoxShape.circle : BoxShape.circle,
             ),

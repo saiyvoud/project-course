@@ -10,7 +10,6 @@ class ProductController extends GetxController {
 
   @override
   void onInit() async {
-    // TODO: implement onInit
     await getProduct();
     super.onInit();
   }
