@@ -5,6 +5,7 @@ import 'package:e_commerces/components/menu.dart';
 import 'package:e_commerces/components/product.dart';
 import 'package:e_commerces/controller/auth_controller.dart';
 import 'package:e_commerces/controller/product_controller.dart';
+import 'package:e_commerces/page/cart/cart_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/painting.dart';
@@ -83,7 +84,9 @@ class _HomePageState extends State<HomePage> {
                       }
                     }),
                     IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Get.toNamed("/cart");
+                      },
                       icon: Icon(Icons.shopping_cart),
                     ),
                   ],

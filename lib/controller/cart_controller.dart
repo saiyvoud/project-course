@@ -11,12 +11,83 @@ class CartController extends GetxController {
   final List cartList = [];
   final loadingCart = false.obs;
   final cartModelList = <CartModel>[].obs;
-
+  var totalPrice = 0.obs;
   @override
   void onInit() async {
     await getCart();
     super.onInit();
   }
+
+  Future<void> removeAmountCart({required String id}) async {
+    try {
+      loadingCart(true);
+
+      await firestore.collection('cart').doc(id).get().then((result) {
+        firestore.collection('cart').doc(id).update({
+          'amout': result['amout'] - 1,
+        }).then((value) async {
+          await getCart();
+          Get.snackbar(
+            "remove Cart",
+            "remove amount in cart succesful!",
+            colorText: primaryColorWhite,
+            backgroundColor: primaryColorAmber,
+          );
+          loadingCart(false);
+          update();
+        });
+      });
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<void> deleteCart({required String id}) async {
+    try {
+      loadingCart(true);
+
+      await firestore.collection('cart').doc(id).get().then((result) {
+        firestore.collection('cart').doc(id).delete().then((value) async {
+          await getCart();
+          Get.snackbar(
+            "delete Cart",
+            "delete cart succesful!",
+            colorText: primaryColorWhite,
+            backgroundColor: primaryColorRed,
+          );
+          loadingCart(false);
+          update();
+        });
+      });
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<void> addAmountToCart({required String id}) async {
+    try {
+      loadingCart(true);
+
+      await firestore.collection('cart').doc(id).get().then((result) {
+        firestore.collection('cart').doc(id).update({
+          'amout': result['amout'] + 1,
+        }).then((value) async {
+          await getCart();
+          Get.snackbar(
+            "add Cart",
+            "add amount in cart succesful!",
+            colorText: primaryColorWhite,
+            backgroundColor: primaryColorGreen,
+          );
+          loadingCart(false);
+          update();
+        });
+      });
+    } catch (e) {
+      rethrow;
+    }
+  }
+
 
   Future<void> getCart() async {
     try {
@@ -27,8 +98,10 @@ class CartController extends GetxController {
           .get()
           .then((value) {
         cartModelList.clear();
+        totalPrice(0);
         for (int i = 0; i < value.docs.length; i++) {
           var data = value.docs;
+
           cartModelList.add(CartModel(
             productId: data[i].id,
             name: data[i]['name'],
@@ -39,6 +112,7 @@ class CartController extends GetxController {
             userId: data[i]['userId'],
           ));
           print("=======>${cartModelList.length}");
+          totalPrice += data[i]['amout'] * data[i]['price'];
         }
         loadingCart(false);
         update();
@@ -89,7 +163,7 @@ class CartController extends GetxController {
             "price": price,
             "image": image,
             "userId": auth.currentUser!.uid,
-          }).then((value) async{
+          }).then((value) async {
             Get.snackbar(
               "add Cart",
               "add product to cart succesful!",

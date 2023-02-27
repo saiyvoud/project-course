@@ -95,6 +95,7 @@ class _DetailHomePageState extends State<DetailHomePage> {
                           return Stack(
                             children: [
                               InkWell(
+                                onTap: ()=> Get.toNamed('/cart'),
                                 child: Container(
                                   height: 50,
                                   width: 50,
